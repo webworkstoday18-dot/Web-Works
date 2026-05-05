@@ -375,75 +375,7 @@
       font-weight: 500;
     }
 
-    /* ── SOCIAL PROOF ── */
-    #proof {
-      background: var(--cream);
-    }
 
-    .proof-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .logo-cloud {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin: 3rem 0 4rem;
-      align-items: center;
-    }
-
-    .logo-chip {
-      background: var(--white);
-      border: 1px solid #E0DAD4;
-      border-radius: 6px;
-      padding: 0.6rem 1.4rem;
-      font-weight: 600;
-      font-size: 0.88rem;
-      color: #666;
-      letter-spacing: 0.04em;
-    }
-
-    .testimonials {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .testimonial {
-      background: var(--white);
-      border-radius: 10px;
-      padding: 2rem;
-      border-left: 4px solid var(--orange);
-      position: relative;
-    }
-
-    .testimonial-quote {
-      font-size: 2rem;
-      color: var(--orange-pale);
-      font-family: 'Playfair Display', serif;
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-
-    .testimonial p {
-      font-size: 0.95rem;
-      color: #555;
-      font-weight: 300;
-      line-height: 1.75;
-    }
-
-    .testimonial-author {
-      margin-top: 1.2rem;
-      font-weight: 500;
-      font-size: 0.88rem;
-      color: var(--black);
-    }
-
-    .testimonial-role {
-      font-size: 0.78rem;
-      color: var(--gray);
-    }
 
     /* ── ABOUT ── */
     #about {
@@ -500,7 +432,7 @@
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
       max-width: 1100px;
       margin: 0 auto;
@@ -810,42 +742,7 @@
     </div>
   </section>
 
-  <!-- SOCIAL PROOF -->
-  <section id="proof">
-    <div class="proof-inner">
-      <p class="section-label">Social Proof</p>
-      <h2 class="section-title">Trusted by dreamers who mean business.</h2>
 
-      <div class="logo-cloud">
-        <div class="logo-chip">Rise Collective</div>
-        <div class="logo-chip">Ember Studios</div>
-        <div class="logo-chip">Bright Roots NPO</div>
-        <div class="logo-chip">Folio Lane</div>
-        <div class="logo-chip">NovaSpark Co.</div>
-      </div>
-
-      <div class="testimonials">
-        <div class="testimonial">
-          <div class="testimonial-quote">"</div>
-          <p>Web Works didn't just build us a website — they gave us a reason to believe our brand was ready for the world. The process was calm, clear, and the results spoke for themselves.</p>
-          <div class="testimonial-author">Aaliya R.</div>
-          <div class="testimonial-role">Founder, Ember Studios</div>
-        </div>
-        <div class="testimonial">
-          <div class="testimonial-quote">"</div>
-          <p>As a nonprofit, budget is everything. Web Works came in at half the price we expected and delivered twice the quality. I can't recommend them enough.</p>
-          <div class="testimonial-author">Marcus T.</div>
-          <div class="testimonial-role">Director, Bright Roots NPO</div>
-        </div>
-        <div class="testimonial">
-          <div class="testimonial-quote">"</div>
-          <p>Within two weeks of our new site going live, inbound leads doubled. The investment paid for itself almost immediately.</p>
-          <div class="testimonial-author">Priya K.</div>
-          <div class="testimonial-role">Co-founder, NovaSpark Co.</div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ABOUT -->
   <section id="about">
@@ -875,16 +772,10 @@
         <div class="service-price">Starting at half competitor pricing</div>
       </div>
       <div class="service-card">
-        <div class="service-icon">✦</div>
-        <div class="service-name">Brand Identity</div>
-        <p class="service-desc">Logo, color palette, and typography that tell your story before you say a word. A cohesive identity that builds trust instantly.</p>
-        <div class="service-price">Available as a standalone or add-on</div>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">📈</div>
-        <div class="service-name">Growth & Optimization</div>
-        <p class="service-desc">SEO setup, performance tuning, and conversion-focused improvements that help your site work harder every single month.</p>
-        <div class="service-price">Ongoing monthly packages available</div>
+        <div class="service-icon">🖨️</div>
+        <div class="service-name">Flyer Design</div>
+        <p class="service-desc">For small nonprofits and community causes that aren't ready for a website yet — we design print-ready flyers that help you show up where your community already is. Bulletin boards, events, and local spaces become your stage.</p>
+        <div class="service-price">Affordable entry point for growing causes</div>
       </div>
     </div>
   </section>
@@ -894,11 +785,11 @@
     <p class="section-label" style="text-align:center; display:block;">Start Here</p>
     <h2 class="section-title">Ready when you are.</h2>
     <p class="contact-sub">Tell us a little about your project. No pressure, no pitch — just a conversation about what you're building and how we can help.</p>
-    <form class="contact-form" onsubmit="handleSubmit(event)">
-      <input type="text" placeholder="Your name" required />
-      <input type="email" placeholder="Your email" required />
-      <input type="text" placeholder="Your business or project name" />
-      <textarea placeholder="Tell us about your project — what you need, what you've tried, what you're hoping to achieve."></textarea>
+    <form class="contact-form" onsubmit="handleSubmit(event)" id="contactForm">
+      <input type="text" id="fname" placeholder="Your name" required />
+      <input type="email" id="femail" placeholder="Your email" required />
+      <input type="text" id="fbiz" placeholder="Your business or project name" />
+      <textarea id="fmsg" placeholder="Tell us about your project — what you need, what you've tried, what you're hoping to achieve."></textarea>
       <button type="submit" class="btn-submit">Send It Over →</button>
       <p class="contact-note">We typically respond within 24 hours. No spam, ever.</p>
     </form>
@@ -917,13 +808,27 @@
     burger.addEventListener('click', () => navLinks.classList.toggle('open'));
     navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
-    // Form submit placeholder
+    // Form submit — opens mailto to webworkstoday18@gmail.com
     function handleSubmit(e) {
       e.preventDefault();
-      const btn = e.target.querySelector('.btn-submit');
-      btn.textContent = 'Message sent! We\'ll be in touch.';
+      const name = document.getElementById('fname').value;
+      const email = document.getElementById('femail').value;
+      const biz = document.getElementById('fbiz').value;
+      const msg = document.getElementById('fmsg').value;
+
+      const subject = encodeURIComponent('New Inquiry from ' + (name || 'Website Visitor'));
+      const body = encodeURIComponent(
+        'Name: ' + name + '\n' +
+        'Email: ' + email + '\n' +
+        'Business/Project: ' + biz + '\n\n' +
+        'Message:\n' + msg
+      );
+
+      window.location.href = 'mailto:webworkstoday18@gmail.com?subject=' + subject + '&body=' + body;
+
+      const btn = document.getElementById('contactForm').querySelector('.btn-submit');
+      btn.textContent = 'Opening your email client…';
       btn.style.background = '#2a7a4b';
-      btn.disabled = true;
     }
 
     // Scroll-triggered fade-in for sections
