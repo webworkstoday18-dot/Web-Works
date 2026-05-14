@@ -264,14 +264,21 @@
       <p class="section-label" style="text-align:center;display:block;">Start Here</p>
       <h2 class="section-title" style="color:var(--white);text-align:center;">Ready when you are.</h2>
       <p class="contact-sub">Tell us a little about your project. No pressure, no pitch — just a conversation about what you're building and how we can help.</p>
-      <form class="contact-form" onsubmit="handleSubmit(event)" id="contactForm">
-        <input type="text" id="fname" placeholder="Your name" required />
-        <input type="email" id="femail" placeholder="Your email" required />
-        <input type="text" id="fbiz" placeholder="Your business or project name" />
-        <textarea id="fmsg" placeholder="Tell us about your project — what you need, what you've tried, what you're hoping to achieve."></textarea>
-        <button type="submit" class="btn-submit">Send It Over →</button>
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/mykoanlz" method="POST">
+        <input type="hidden" name="_subject" id="formSubject" value="New Inquiry — Web Works" />
+        <input type="hidden" name="Inquiry Type" id="formSource" value="General" />
+        <input type="text" name="Name" placeholder="Your name" required />
+        <input type="email" name="email" placeholder="Your email" required />
+        <input type="text" name="Business / Project" placeholder="Your business or project name" />
+        <textarea name="Message" placeholder="Tell us about your project — what you need, what you've tried, what you're hoping to achieve." style="resize:vertical;min-height:130px;"></textarea>
+        <button type="submit" class="btn-submit" id="formSubmitBtn">Send It Over →</button>
         <p class="contact-note">We typically respond within 24 hours. No spam, ever.</p>
       </form>
+      <div id="formSuccess" style="display:none; max-width:500px; margin:0 auto; text-align:center; padding:2rem; background:rgba(42,122,75,0.15); border:1px solid rgba(42,122,75,0.4); border-radius:10px; position:relative; z-index:1;">
+        <p style="font-size:1.4rem; margin-bottom:0.5rem;">✅</p>
+        <p style="color:var(--white); font-weight:500; margin-bottom:0.4rem;">Message sent!</p>
+        <p style="color:rgba(255,255,255,0.5); font-size:0.9rem; font-weight:300;">We'll be in touch within 24 hours.</p>
+      </div>
     </section>
 
     <footer>
@@ -392,7 +399,7 @@
       <div class="detail-cta-strip">
         <h3>Not sure which tier is right for you?</h3>
         <p>Reach out and we'll figure it out together — no pressure, no commitment.</p>
-        <button class="btn-detail-cta" onclick="goToContact()">Get in Touch →</button>
+        <button class="btn-detail-cta" onclick="goToContact('website')">Get in Touch →</button>
       </div>
       <footer>
         <div class="footer-brand">Web <span>Works</span></div>
@@ -447,7 +454,7 @@
       <div class="detail-cta-strip">
         <h3>Have an event coming up?</h3>
         <p>Send us the details and we'll take care of the design.</p>
-        <button class="btn-detail-cta" onclick="goToContact()">Get in Touch →</button>
+        <button class="btn-detail-cta" onclick="goToContact('flyer')">Get in Touch →</button>
       </div>
       <footer>
         <div class="footer-brand">Web <span>Works</span></div>
@@ -463,13 +470,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function goToContact() {
-      showPage('home');
-      setTimeout(() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }), 80);
-    }
-
-    function navTo(anchor, e) {
-      if (e) e.preventDefault();
+    function navTo(anchor) {
       showPage('home');
       setTimeout(() => {
         const el = document.querySelector(anchor);
@@ -489,19 +490,47 @@
     const navLinks = document.getElementById('navLinks');
     burger.addEventListener('click', () => navLinks.classList.toggle('open'));
 
-    function handleSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('fname').value;
-      const email = document.getElementById('femail').value;
-      const biz = document.getElementById('fbiz').value;
-      const msg = document.getElementById('fmsg').value;
-      const subject = encodeURIComponent('New Inquiry from ' + (name || 'Website Visitor'));
-      const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nBusiness/Project: ' + biz + '\n\nMessage:\n' + msg);
-      window.location.href = 'mailto:webworkstoday18@gmail.com?subject=' + subject + '&body=' + body;
-      const btn = document.getElementById('contactForm').querySelector('.btn-submit');
-      btn.textContent = 'Opening your email client…';
-      btn.style.background = '#2a7a4b';
+    function goToContact(source) {
+      // Tag the inquiry source before navigating
+      if (source) {
+        const labels = { website: 'Website Inquiry', flyer: 'Flyer Inquiry' };
+        const subjects = { website: 'Website Inquiry — Web Works', flyer: 'Flyer Inquiry — Web Works' };
+        document.getElementById('formSource').value = labels[source] || 'General';
+        document.getElementById('formSubject').value = subjects[source] || 'New Inquiry — Web Works';
+      }
+      showPage('home');
+      setTimeout(() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }), 80);
     }
+
+    // Formspree AJAX submission
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('formSubmitBtn');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      const data = new FormData(contactForm);
+      try {
+        const res = await fetch('https://formspree.io/f/mykoanlz', {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          contactForm.style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+        } else {
+          btn.textContent = 'Something went wrong — try again';
+          btn.style.background = '#c0392b';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Network error — try again';
+        btn.style.background = '#c0392b';
+        btn.disabled = false;
+      }
+    });
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
