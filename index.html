@@ -274,10 +274,10 @@
         <button type="submit" class="btn-submit" id="formSubmitBtn">Send It Over →</button>
         <p class="contact-note">We typically respond within 24 hours. No spam, ever.</p>
       </form>
-      <div id="formSuccess" style="display:none; max-width:500px; margin:0 auto; text-align:center; padding:2rem; background:rgba(42,122,75,0.15); border:1px solid rgba(42,122,75,0.4); border-radius:10px; position:relative; z-index:1;">
-        <p style="font-size:1.4rem; margin-bottom:0.5rem;">✅</p>
-        <p style="color:var(--white); font-weight:500; margin-bottom:0.4rem;">Message sent!</p>
-        <p style="color:rgba(255,255,255,0.5); font-size:0.9rem; font-weight:300;">We'll be in touch within 24 hours.</p>
+      <div id="formSuccess" style="display:none; max-width:500px; margin:0 auto; text-align:center; padding:2.5rem 2rem; background:rgba(42,122,75,0.12); border:1px solid rgba(42,122,75,0.35); border-radius:10px; position:relative; z-index:1;">
+        <p style="font-size:2rem; margin-bottom:0.8rem;">✅</p>
+        <p style="color:var(--white); font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; margin-bottom:0.6rem;">Message received!</p>
+        <p style="color:rgba(255,255,255,0.6); font-size:0.95rem; font-weight:300; line-height:1.7;">Thanks for reaching out. We'll get back to you within <strong style="color:var(--orange-light);">24 hours</strong>. Keep an eye on your inbox — we look forward to talking.</p>
       </div>
     </section>
 
@@ -517,16 +517,19 @@
           body: data,
           headers: { 'Accept': 'application/json' }
         });
-        if (res.ok) {
+        const json = await res.json();
+        if (res.ok && !json.error) {
           contactForm.style.display = 'none';
           document.getElementById('formSuccess').style.display = 'block';
+          document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
-          btn.textContent = 'Something went wrong — try again';
+          const msg = json?.errors?.[0]?.message || 'Something went wrong — please try again.';
+          btn.textContent = msg;
           btn.style.background = '#c0392b';
           btn.disabled = false;
         }
       } catch {
-        btn.textContent = 'Network error — try again';
+        btn.textContent = 'Network error — please try again';
         btn.style.background = '#c0392b';
         btn.disabled = false;
       }
