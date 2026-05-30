@@ -140,6 +140,8 @@
     .tier-best-for { font-size: 0.8rem; color: var(--orange); font-weight: 500; letter-spacing: 0.04em; }
     .tier-body { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 3rem; }
     .tier-sub-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); font-weight: 500; margin-bottom: 0.6rem; }
+    .tier-price { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--orange); margin: 0.2rem 0 0.1rem; }
+    .tier-price-note { font-size: 0.78rem; color: var(--gray); font-weight: 300; }
 
     .detail-cta-strip { background: var(--black); padding: 4rem 6vw; text-align: center; }
     .detail-cta-strip h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.2rem); color: var(--white); margin-bottom: 0.8rem; }
@@ -304,6 +306,7 @@
           <div class="tier-card">
             <div class="tier-header">
               <div><div class="tier-name">Landing Page</div><div class="tier-best-for">Best for one goal, one message, one action.</div></div>
+              <div style="text-align:right;"><div class="tier-price">$200</div><div class="tier-price-note">starting price</div></div>
             </div>
             <div class="tier-body">
               <div>
@@ -335,6 +338,7 @@
           <div class="tier-card">
             <div class="tier-header">
               <div><div class="tier-name">3–5 Page Site</div><div class="tier-best-for">Best for a small business that needs a more complete online presence.</div></div>
+              <div style="text-align:right;"><div class="tier-price">$400</div><div class="tier-price-note">starting price</div></div>
             </div>
             <div class="tier-body">
               <div>
@@ -368,6 +372,7 @@
           <div class="tier-card">
             <div class="tier-header">
               <div><div class="tier-name">Site Refresh</div><div class="tier-best-for">Best for someone who already has a website but needs it improved.</div></div>
+              <div style="text-align:right;"><div class="tier-price">$150</div><div class="tier-price-note">starting price</div></div>
             </div>
             <div class="tier-body">
               <div>
@@ -395,9 +400,10 @@
             </div>
           </div>
         </div>
+        <p style="max-width:1100px; margin:0 auto; font-size:0.82rem; color:var(--gray); font-weight:300; line-height:1.7; padding-top:0.5rem;">
+          * All prices are starting rates and are subject to change based on project scope and complexity. Final pricing will be discussed and agreed upon after your initial inquiry — no surprises.
+        </p>
       </div>
-      <div class="detail-cta-strip">
-        <h3>Not sure which tier is right for you?</h3>
         <p>Reach out and we'll figure it out together — no pressure, no commitment.</p>
         <button class="btn-detail-cta" onclick="goToContact('website')">Get in Touch →</button>
       </div>
@@ -425,6 +431,10 @@
           <div>
             <div class="detail-block">
               <h3 class="detail-block-title">Single Flyer</h3>
+              <div style="margin-bottom:1.2rem;">
+                <div class="tier-price">$30</div>
+                <div class="tier-price-note">per flyer</div>
+              </div>
               <p class="tier-best-for" style="margin-bottom:1.2rem;">Best for a one-time promotion or event.</p>
               <ul class="detail-list">
                 <li>One flyer design</li>
@@ -450,9 +460,10 @@
             </div>
           </div>
         </div>
+        <p style="max-width:1100px; margin:2rem auto 0; font-size:0.82rem; color:var(--gray); font-weight:300; line-height:1.7;">
+          * Pricing is a starting rate and may vary based on project details. Final pricing will be confirmed after your initial conversation with us.
+        </p>
       </div>
-      <div class="detail-cta-strip">
-        <h3>Have an event coming up?</h3>
         <p>Send us the details and we'll take care of the design.</p>
         <button class="btn-detail-cta" onclick="goToContact('flyer')">Get in Touch →</button>
       </div>
